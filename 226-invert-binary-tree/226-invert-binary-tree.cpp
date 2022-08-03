@@ -12,21 +12,27 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        stack<TreeNode* > s;
-        s.push(root);
+//         stack<TreeNode* > s;
+//         s.push(root);
         
-        while(!s.empty())
-        {
-            TreeNode* curr=s.top();
-            s.pop();
+//         while(!s.empty())
+//         {
+//             TreeNode* curr=s.top();
+//             s.pop();
             
-            if(curr!=NULL)
-            {
-                s.push(curr->left);
-                s.push(curr->right);
-                swap(curr->left,curr->right);
-            }
-        }
+//             if(curr!=NULL)
+//             {
+//                 s.push(curr->left);
+//                 s.push(curr->right);
+//                 swap(curr->left,curr->right);
+//             }
+//         }
+//         return root;
+        if(root==NULL)
+            return NULL;
+        swap(root->left,root->right);
+        invertTree(root->left);
+        invertTree(root->right);
         return root;
     }
 };
