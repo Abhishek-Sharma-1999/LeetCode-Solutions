@@ -10,7 +10,10 @@
  */
 class Solution {
 public:
+    
     ListNode* sortList(ListNode* head) {
+        
+        
         ListNode* curr=head;
         vector<int> ans;
         while(curr!=NULL)
