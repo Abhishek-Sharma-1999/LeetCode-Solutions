@@ -10,23 +10,32 @@
  * };
  */
 class Solution {
-public:
-    void inorder(TreeNode* root, vector<int>& vec){
-        if(!root) return;
-        inorder(root->left,vec);
-        vec.push_back(root->val);
-        inorder(root->right,vec);
+
+    vector<int> nums;
+    void inorder(TreeNode* root)
+    {
+        if(root==NULL)
+            return;
+        
+            inorder(root->left);
+            nums.push_back(root->val);
+            inorder(root->right);
+        
     }
+    public:
     bool findTarget(TreeNode* root, int k) {
-        if(!root) return false;
-        vector<int> vec;
-        inorder(root,vec);
-        int l=0,r=vec.size()-1;
-        while(l<r){
-            int sum=vec[l]+vec[r];
-            if(sum<k) l++;
-            else if(sum>k) r--;
-            else return true;
+        inorder(root);
+        int i=0;
+        int j=nums.size()-1;
+        while(i<j)
+        {
+            int sum=nums[i]+nums[j];
+            if(sum==k)
+                return true;
+            else if(sum>k)
+                j--;
+            else
+                i++;
         }
         return false;
     }
