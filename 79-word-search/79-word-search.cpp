@@ -8,12 +8,15 @@ public:
             return false;
         char c=board[x][y];
         board[x][y]='.';
-        bool res=check(board,x+1,y,word,index+1) || 
+        if(check(board,x+1,y,word,index+1) || 
                  check(board,x-1,y,word,index+1) || 
                  check(board,x,y+1,word,index+1) || 
-                 check(board,x,y-1,word,index+1);
+                 check(board,x,y-1,word,index+1))
+        {
+            return true;
+        }
         board[x][y]=c;
-        return res;
+        return false;
     }
     bool exist(vector<vector<char>>& board, string word) {
         for(int i=0;i<board.size();i++)
