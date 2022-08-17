@@ -15,6 +15,7 @@ public:
         {
             return true;
         }
+// agar nahin mila toh jo caracter vhaan tha,use vapas lga denge , '.' ki jagah aur phir false return karenge
         board[x][y]=c;
         return false;
     }
