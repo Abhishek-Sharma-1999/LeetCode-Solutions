@@ -10,12 +10,11 @@
  */
 class Solution {
 public:
-    ListNode* Reverse(ListNode* head)
+    ListNode* reverse(ListNode* head)
     {
         ListNode* curr=head;
         ListNode* prev=NULL;
         ListNode* forward=NULL;
-        
         while(curr!=NULL)
         {
             forward=curr->next;
@@ -33,20 +32,17 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-         ListNode* second=Reverse(slow->next);
-         slow->next=NULL;
-         ListNode* first=head;
-        
-        while(second!=NULL)
+        ListNode* secondList=reverse(slow->next);
+        slow->next=NULL;
+        ListNode* firstList=head;
+        while(secondList!=NULL)
         {
-             ListNode* temp1=first->next;
-            ListNode* temp2=second->next;
-            first->next=second;
-            second->next=temp1;
-            first=temp1;
-            second=temp2;
-             
+            ListNode* temp1=firstList->next;
+            ListNode* temp2=secondList->next;
+            firstList->next=secondList;
+            secondList->next=temp1;
+            firstList=temp1;
+            secondList=temp2;
         }
-       
     }
 };
