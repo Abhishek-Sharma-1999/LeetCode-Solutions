@@ -10,8 +10,10 @@ public:
         }
         
         for(int i=index; i<candidates.size(); i++){
-            if(i>index && candidates[i]==candidates[i-1]) continue;
-            if(candidates[i] > target) break;
+            if(i>index && candidates[i]==candidates[i-1]) 
+                continue;
+            if(candidates[i] > target) 
+                break;
             
             CurrComb.push_back(candidates[i]);
             helper(i+1,candidates,target-candidates[i]);
