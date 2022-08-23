@@ -6,15 +6,16 @@ public:
         {
             sum+=nums[i];
         }
-        long long int leftSum=0,rightSum=sum;
+        long long int leftsum=0,rightsum=sum;
+        
         for(int i=0;i<nums.size();i++)
         {
-            rightSum-=nums[i];
-            if(leftSum==rightSum)
+            leftsum+=nums[i];
+            if(leftsum==rightsum)
             {
                 return i;
             }
-            leftSum+=nums[i];
+            rightsum-=nums[i];
         }
         
         return -1;
