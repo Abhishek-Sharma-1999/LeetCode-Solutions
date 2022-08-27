@@ -7,7 +7,7 @@ public:
             mp[s[i]]++;
         }
         
-        int result=0,fo=0;
+        int result=0;
         for(auto i:mp)
         {
             if(i.second % 2==0)
