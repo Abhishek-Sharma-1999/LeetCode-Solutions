@@ -11,15 +11,15 @@
  */
 class Solution {
 public:
-    int sum=0;
-    int traverse(TreeNode* root,bool val)
+    
+    int traverse(TreeNode* root,bool val,int &sum)
     {
         if(root==NULL)
         {
             return sum;
         }
-        traverse(root->left,true);
-        traverse(root->right,false);
+        traverse(root->left,true,sum);
+        traverse(root->right,false,sum);
         if(root->left==NULL && root->right==NULL && val==true)
         {
             sum+=root->val;
@@ -28,7 +28,8 @@ public:
     }
     int sumOfLeftLeaves(TreeNode* root) {
         bool flag=false;
-        traverse(root,flag);
+        int sum=0;
+        traverse(root,flag,sum);
         return sum;
     }
 };
