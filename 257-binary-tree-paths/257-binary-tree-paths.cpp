@@ -11,8 +11,8 @@
  */
 class Solution {
 public:
-    vector<string> res;
-    void traverse(TreeNode* root,string ans)
+    
+    void traverse(TreeNode* root,string ans,vector<string> &res)
     {
         if(root==NULL)
         {
@@ -27,11 +27,12 @@ public:
         }
         
         ans+=to_string(root->val)+ "->";
-        traverse(root->left,ans);
-        traverse(root->right,ans);       
+        traverse(root->left,ans,res);
+        traverse(root->right,ans,res);       
     }
     vector<string> binaryTreePaths(TreeNode* root) {
-        traverse(root,"");
+        vector<string> res;
+        traverse(root,"",res);
         return res;
     }
 };
