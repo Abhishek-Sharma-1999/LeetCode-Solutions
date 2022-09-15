@@ -23,13 +23,9 @@ public:
             {
                 return {};
             }
-            if(mp[i] && mp[2*i])
-            {
                 ans.push_back(i);
                 mp[i]--;
-                mp[i*2]--;
-            }
-            
+                mp[i*2]--;         
         }
         return ans;
     }
