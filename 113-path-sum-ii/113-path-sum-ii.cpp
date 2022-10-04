@@ -30,7 +30,7 @@ public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         vector<vector<int>> ans;
         vector<int> temp;
-        getSum(root,targetSum,ans,{});
+        getSum(root,targetSum,ans,temp);
         return ans;
     }
 };
