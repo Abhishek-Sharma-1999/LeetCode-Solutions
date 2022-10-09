@@ -16,20 +16,25 @@ public:
                 int c=nums[high];
                 
                 if(a+b+c==target)
+                {
                     return target;
-                else if(abs(a+b+c-target<diff))
+                }
+                
+                else if(abs(a+b+c-target)<diff)
                 {
                     diff=abs(a+b+c-target);
                     ans=a+b+c;
                 }
-                
                 if(a+b+c<target)
+                {
                     low++;
+                }
                 else
+                {
                     high--;
+                }
             }
         }
-        
         return ans;
     }
 };
