@@ -1,6 +1,7 @@
  
 class Solution {
 public:
+    // accepted this solution many times for chechking of leethub, it's not working now
    static bool compare(int a,int b)
     {
         string s1=to_string(a);
