@@ -1,5 +1,5 @@
 class Solution {
-public:
+    private:
     bool isPalaindrome(string &s,int start,int end)
     {
         while(start<=end)
@@ -11,7 +11,7 @@ public:
         }
         return true;
     }
-    void help(int index,string s,vector<string>& path,vector<vector<string>>& ans)
+    void help(int index,string &s,vector<string> &path,vector<vector<string>> &ans)
     {
         if(index==s.length())
         {
@@ -28,9 +28,10 @@ public:
             }
         }
     }
+public:
     vector<vector<string>> partition(string s) {
-        vector<vector<string>> ans;
         vector<string> path;
+        vector<vector<string>> ans;
         help(0,s,path,ans);
         return ans;    
     }
