@@ -1,6 +1,8 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
+        // Approach-1
+        // Using Xor Property
         int ans=0;
         for(int i=0;i<nums.size();i++)
         {
