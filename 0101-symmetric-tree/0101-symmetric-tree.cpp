@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    bool Match(TreeNode* root1,TreeNode* root2)
+    bool Match(TreeNode *root1,TreeNode *root2)
     {
         if(root1!=NULL && root2!=NULL)
         {
@@ -29,7 +29,7 @@ public:
     }
     bool isSymmetric(TreeNode* root) {
         if(root==NULL)
-            return 1;
+            return true;
         return Match(root->left,root->right);
     }
 };
