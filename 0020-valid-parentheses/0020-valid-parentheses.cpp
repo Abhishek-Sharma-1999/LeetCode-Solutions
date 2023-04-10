@@ -2,31 +2,28 @@ class Solution {
 public:
     bool isValid(string s) {
         stack<char> st;
-        int n=s.length();
-        char temp;
-        for(int i=0;i<n;i++)
+        for(int i=0;i<s.length();i++)
         {
-            if(s[i]=='(' || s[i]=='{' || s[i]=='[')
+            char ch=s[i];
+            if(s[i]=='(' || s[i]=='[' || s[i]=='{')
             {
                 st.push(s[i]);
             }
             else
             {
-                if(st.size()==0)    //agar stack empty hai
+                if(st.size()==0)    //stack empty hai, toh false
                     return false;
-                temp=st.top();
-                if(s[i]==')' && temp!='(')
+                else if(st.top()=='(' && s[i]!=')')
                     return false;
-                if(s[i]==']' && temp!='[')
+                else if(st.top()=='[' && s[i]!=']')
                     return false;
-                if(s[i]=='}' && temp!='{')
+                else if(st.top()=='{' && s[i]!='}')
                     return false;
                 st.pop();
             }
         }
-        if(st.empty())
-            return true;
-        else
+        if(st.size()!=0)    //abhi bhi stack ,mein element hai
             return false;
+         return true;
     }
 };
