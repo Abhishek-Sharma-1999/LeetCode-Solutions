@@ -13,10 +13,10 @@ public:
     vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
         int n=candies.size();
         vector<bool> ans(n,false);
-
+        int MAX=maxEle(candies);
         for(int i=0;i<n;i++)
         {
-            if(candies[i]+extraCandies>=maxEle(candies))
+            if(candies[i]+extraCandies>=MAX)
                 ans[i]=true;
         }
         return ans;
