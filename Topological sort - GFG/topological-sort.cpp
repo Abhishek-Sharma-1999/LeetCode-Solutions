@@ -6,34 +6,43 @@ using namespace std;
 class Solution
 {
 	public:
-	void DFS(vector<int> adj[],int u,vector<bool> &visited,stack<int> &st)
-	{
-	    visited[u]=true;
-	    for(int v:adj[u])
-	    {
-	        if(!visited[v])
-	        {
-	            DFS(adj,v,visited,st);
-	        }
-	    }
-	    st.push(u); //stack mein last mein source ko daal denge, use corresponding nodes ko hum daal chuke honge
-	}
+	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
-	    vector<bool>visited(V,false);
-	    stack<int>st;
-	    for(int i=0;i<V;i++)
+	    // step1 
+	    vector<int>indegree(V,0);
+	    for(int u=0;u<V;u++)
 	    {
-	        if(!visited[i]) //agar visited nahin hai,toh DFS call maar denge
+	        for(int v:adj[u])
 	        {
-	            DFS(adj,i,visited,st);
+	            indegree[v]++;
 	        }
 	    }
-	    vector<int>res;
-	    while(!st.empty())
+	    
+	    // step 2 - jinki indegree 0 hai,unhe queue mein daal do
+	    queue<int>q;
+	    for(int i=0;i<V;i++)
 	    {
-	        res.push_back(st.top());
-	        st.pop();
+	        if(indegree[i]==0)
+	            q.push(i);
+	    }
+	    
+	    //step -3 (Simple BFS)
+	    vector<int>res;
+	    while(!q.empty())
+	    {
+	        int u=q.front();
+	        q.pop();
+	        res.push_back(u);
+	        
+	        for(int &v:adj[u])
+	        {
+	            indegree[v]--;
+	            if(indegree[v]==0)
+	            {
+	                q.push(v);
+	            }
+	        }
 	    }
 	    return res;
 	}
