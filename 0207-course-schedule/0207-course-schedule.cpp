@@ -1,54 +1,46 @@
 class Solution {
 public:
-    bool topologicalSortCheck(unordered_map<int,vector<int>> &adj,int numCourses,vector<int> &indegree)
-    {
-        queue<int> q;
-        int count=0;    //for count of visited nodes
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        unordered_map<int,vector<int>> mp;
+        vector<int>indegree(numCourses,0);
+        for(auto &vec:prerequisites)
+        {
+            int a=vec[0];
+            int b=vec[1];
+            mp[b].push_back(a);
+            indegree[a]++;
+        }
+        vector<int>res;
+        int count=0;
+        queue<int>q;
         for(int i=0;i<numCourses;i++)
         {
             if(indegree[i]==0)
             {
-                count++;
                 q.push(i);
+                count++;
+                res.push_back(i);
             }
         }
-        
+        // BFS
         while(!q.empty())
         {
             int u=q.front();
             q.pop();
-            for(int &v:adj[u])
+            for(int &v:mp[u])
             {
                 indegree[v]--;
                 if(indegree[v]==0)
                 {
                     q.push(v);
                     count++;
+                    res.push_back(v);
                 }
             }
         }
         
-        if(count==numCourses)    //I was able to visit all nodes(courses)
-            return true;
-        
-        return false;
-        
-    }
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int,vector<int>> adj;
-        vector<int> indegree(numCourses,0);
-        // making our fraph,through adjacency list
-        for(auto vec:prerequisites)
-        {
-            int a=vec[0];
-            int b=vec[1];
-            // pehle b karenge,phira (b---> a)  se a arrow ja rha hai
-            adj[b].push_back(a);
-            // arrow ja rha hai a mein, toh indegree uski bad jaayegi
-            indegree[a]++;
-        }
-        // if cycle is present,not possible
-        
-        return topologicalSortCheck(adj,numCourses,indegree);
+        if(count==numCourses)
+            return 1;
+        return 0;
     }
 };
