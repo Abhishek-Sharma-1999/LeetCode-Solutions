@@ -1,20 +1,16 @@
 class Solution {
 public:
     int arraySign(vector<int>& nums) {
-        long long int ans=0;
-        for(auto i:nums){
-            if(i==0)
-            {
+        int count=0;
+        for(auto i:nums)
+        {
+            if(i<0)
+                count++;
+            if(i==0)    //in case 0 is there
                 return 0;
-            }
-            else if(i<0)
-            {
-                ans++;
-            }
         }
-        if(ans%2==0)
+        if(count%2==0) //if negative number comes even times,then it becomes +ve
             return 1;
-        else
-            return -1;
+        return -1;  //otherwise negative
     }
 };
