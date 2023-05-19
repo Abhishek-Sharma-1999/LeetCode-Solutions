@@ -1,43 +1,35 @@
 class Solution {
-public:
-    // 0-Not coloured   1-Red   -1-Blue
-    bool check(vector<vector<int>>& graph,vector<int> &color,int start)
+    bool isBipartiteDFS(vector<vector<int>>& graph,int current_node,vector<int> &color,int current_color)
     {
-        color[start]=1;
-        queue<int> q;
-        q.push(start);
-        while(!q.empty())
+        color[current_node]=current_color;  //current node ko current_coor se color kar diya
+        for(int &v:graph[current_node]) //phir iske adjacent nodes par gaye
         {
-            int u=q.front();
-            q.pop();
-            
-            for(int v:graph[u])
+            if(color[current_node]==color[v])   //agar dono ka color same hai,toh false
+                return false;
+            if(color[v]==-1)    //not visited
             {
-                if(color[v]==0)
-                {
-                    // Assigning color to it's neighbours
-                    color[v]=-color[u];
-                    q.push(v);
-                }
-                else if(color[v]==color[u]) // It's neighbour has already been coloured with same color
-                {
+                int colorOfV=1-current_color;   //adjacent node ka color
+                if(isBipartiteDFS(graph,v,color,colorOfV)==false)   //ab uspe DFS maarenge,agar vhaan se false aaya toh false return kar denge
                     return false;
-                }
             }
         }
-        return true;
+        return true;    //nahin toh last mein true return kar denge
     }
+public:
     bool isBipartite(vector<vector<int>>& graph) {
-        int n=graph.size();
-        vector<int>color(n,0);
-        for(int i=0;i<n;i++)
-        {
-            if(color[i]==0)
-            {
-                if(check(graph,color,i)==false)
-                    return false;
-            }
-        }
-        return true;
+       int V=graph.size();
+        vector<int>color(V,-1);
+	    int current_color=0;
+	    for(int i=0;i<V;i++)
+	    {
+	        if(color[i]==-1)    //abhi visit nahin hua,na hi color,toh DFS maarenge
+	        {
+	            if(isBipartiteDFS(graph,i,color,current_color)==false)
+	            {
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
     }
 };
