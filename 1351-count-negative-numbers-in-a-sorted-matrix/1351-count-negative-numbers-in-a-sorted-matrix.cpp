@@ -1,24 +1,16 @@
 class Solution {
 public:
-    int CountNeg(vector<int>& v)
-    {
-        int low=0,high=v.size()-1;
-        while(low<=high)
-        {
-            int mid=low+(high-low)/2;
-            
-            if(v[mid]>=0)
-                low=mid+1;
-            else
-                high=mid-1;
-        }
-        return v.size()-high-1;
-    }
     int countNegatives(vector<vector<int>>& grid) {
+        // Brute Force - O(n)
         int count=0;
-        for(int i=0;i<grid.size();i++)
+        int rows=grid.size(),col=grid[0].size();
+        for(int i=0;i<rows;i++)
         {
-            count+=CountNeg(grid[i]);
+            for(int j=0;j<col;j++)
+            {
+                if(grid[i][j]<0)
+                    count++;
+            }
         }
         return count;
     }
