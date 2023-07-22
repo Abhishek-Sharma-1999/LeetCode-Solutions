@@ -43,28 +43,24 @@ class Solution
     //Function to remove duplicates from unsorted linked list.
     Node * removeDuplicates( Node *head) 
     {
-     if(head==NULL)
-     {
-         return NULL;
-     }
-     unordered_set<int> seen;
-     Node *curr=head;
-     seen.insert(curr->data);
-     // Traversing the Linked_List
-     while(curr!=NULL && curr->next!=NULL)
-     {
-         //Same
-         if(seen.find(curr->next->data)!=seen.end()) 
-         {
-             curr->next=curr->next->next;
-         }
-         else
-         {
-             // Not Same
-             seen.insert(curr->next->data);
-             curr=curr->next;
-         }
-     }
+        if(head==NULL){
+            return NULL;
+        }
+        set<int>st;
+        Node *curr=head;
+        st.insert(curr->data);  //pehli node ko daal diya, ye toh unique aur hme first duplicate ko rakhna hai,uske baad vaalo ko delete karna hai
+        while(curr!=NULL && curr->next!=NULL)
+        {
+            if(st.count(curr->next->data)) // vo set mein present hai,matlab ye repeat ho rha hai, toh current node ko uske next ke next ko point kra denge
+            {
+                curr->next=curr->next->next;
+            }
+            else
+            {
+                st.insert(curr->next->data);
+                curr=curr->next;
+            }
+        }
      return head;
     }
 };
