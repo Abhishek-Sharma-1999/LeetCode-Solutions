@@ -122,25 +122,42 @@ class Solution{
     // returns the inorder successor of the Node x in BST (rooted at 'root')
     Node * inOrderSuccessor(Node *root, Node *x)
     {
-        vector<Node*>ans;
-        inorder(root,ans);
-        int index=-1;
-        for(int i=0;i<ans.size();i++)
+        // vector<Node*>ans;
+        // inorder(root,ans);
+        // int index=-1;
+        // for(int i=0;i<ans.size();i++)
+        // {
+        //     if(ans[i]->data==x->data)
+        //     {
+        //         index=i;
+        //         break;
+        //     }
+        // }
+        // for(int j=index+1;j<ans.size();j++)
+        // {
+        //     if(ans[j]->data > x->data)
+        //     {
+        //         return ans[j];
+        //     }
+        // }
+        // return NULL;
+        
+        // Approach-2
+        Node *ans=NULL;
+        Node *curr=root;
+        while(curr!=NULL)
         {
-            if(ans[i]->data==x->data)
+            if(curr->data > x->data)    //agar usse bda aaya, toh use ans mein store kra lenge, aur isse just chota mil sake toh left mein chale jaayenge
             {
-                index=i;
-                break;
+                ans=curr;
+                curr=curr->left;
+            }
+            else    // agar uuse chota mila,toh hum right mein chale jaayenge
+            {
+                curr=curr->right;
             }
         }
-        for(int j=index+1;j<ans.size();j++)
-        {
-            if(ans[j]->data > x->data)
-            {
-                return ans[j];
-            }
-        }
-        return NULL;
+        return ans;
     }
 };
 
