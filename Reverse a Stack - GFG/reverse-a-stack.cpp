@@ -10,17 +10,39 @@ using namespace std;
 
 class Solution{
 public:
+void insert_at_last(stack<int> &St,int x)
+{
+    if(St.empty())  //jaise hi stack empty ho jaayega,hum apne vaale element ko daal denge
+    {
+        St.push(x);
+        return;
+    }
+    int temp=St.top();
+    St.pop();
+    insert_at_last(St,x);
+    St.push(temp); //// yhaan par aa gaye,matlab um apne x element ko last mein daal chuke hone,toh jo element abhi stack se nikala tha,use vapas daal denge
+}
     void Reverse(stack<int> &St){
-        vector<int>ans;
-        while(!St.empty())
+        // Approach -1 (Without Recursion ,using vector)
+        // vector<int>ans;
+        // while(!St.empty())
+        // {
+        //     ans.push_back(St.top());
+        //     cout<<St.top()<<"++++"<<endl;
+        //     St.pop();
+        // }
+        // for(int i=0;i<ans.size();i++)
+        // {
+        //     St.push(ans[i]);
+        // }
+        if(St.empty())
         {
-            ans.push_back(St.top());
-            St.pop();
+            return;
         }
-        for(int i=0;i<ans.size();i++)
-        {
-            St.push(ans[i]);
-        }
+        int temp=St.top();
+        St.pop();
+        Reverse(St);
+        insert_at_last(St,temp);
     }
 };
 
