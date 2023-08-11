@@ -7,11 +7,11 @@ class Solution {
   public:
   long long int solve(int index,int coins[], int N, int sum,vector<vector<long long int>>&dp)
   {
-      if(sum==0)
+      if(sum==0)    //agar sum 0 ho,gya matlab ek answer mil gya
       {
-          return (sum%coins[N-1]==0);
+          return 1;
       }
-      if(index==N)
+      if(index==N)  // agar index,array ke scope se bahar nikal gya
       {
           return 0;
       }
@@ -19,9 +19,9 @@ class Solution {
       {
           return dp[index][sum];
       }
-      long long int skip=solve(index+1,coins,N,sum,dp);
+      long long int skip=solve(index+1,coins,N,sum,dp); //ek ko hmne skip kar diya
       long long int take=0;
-      if(coins[index]<=sum)
+      if(coins[index]<=sum) //hum,tabhi lenge,jab coin ki value kam ya equal hogi sum ke
       {
         take=solve(index,coins,N,sum-coins[index],dp);
       }
