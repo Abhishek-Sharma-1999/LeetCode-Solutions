@@ -7,7 +7,6 @@ class Solution {
 public:
 bool dfs(int i,int j,vector<vector<char>>grid, string word,int index,int row,int col,int x1,int x2)
 {
-    index++;
     if(index==word.size()){
         return true;
     }
@@ -15,7 +14,7 @@ bool dfs(int i,int j,vector<vector<char>>grid, string word,int index,int row,int
     int new_j=j+x2;
     if(new_i >=0 && new_j>=0 && new_i<row && new_j<col && grid[new_i][new_j]==word[index])
     {
-        return dfs(new_i,new_j,grid,word,index,row,col,x1,x2);
+        return dfs(new_i,new_j,grid,word,index+1,row,col,x1,x2);
     }
     return false;
 }
@@ -33,7 +32,7 @@ bool dfs(int i,int j,vector<vector<char>>grid, string word,int index,int row,int
 	            {
 	                for(int k=0;k<8;k++)
 	                {
-	                    if(dfs(i,j,grid,word,0,row,col,dir_i[k],dir_j[k])){
+	                    if(dfs(i,j,grid,word,1,row,col,dir_i[k],dir_j[k])){
 	                        res.push_back({i,j});
 	                        break;
 	                    }
