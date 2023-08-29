@@ -53,18 +53,18 @@ class Solution
         {
             if(temp->data < temp->next->data)
             {
-                temp->data=temp->next->data;
-                Node *del=temp->next;
-                temp->next=temp->next->next;
-                delete(del);
-                temp=head;
+                temp->data=temp->next->data;    //copying next greater value to current node data
+                Node *del=temp->next;   //this is next node,whose data has been copied,now we delete that node
+                temp->next=temp->next->next; //pointing curr node next to curr next' next
+                delete(del);    //deleting the next node,whose data has been copied
+                temp=head;  // re-initialising temp again to head, taaki jo abhi node bnayi hai,kabhi vo choti nikle aage vaalo se, is liye temp=temp->next nahin kiya
             }
             else
             {
-                temp=temp->next;
+                temp=temp->next; //nahin toh normally aage bda denge
             }
         }
-        return head;
+        return head; //temp toh last mein chla gya hoga,isliye head ko return kra denge
     }
     
 };
