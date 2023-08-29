@@ -53,11 +53,11 @@ class Solution
         {
             if(temp->data < temp->next->data)
             {
-                temp->data=temp->next->data;    //Copying the data from next node to current
-                Node *curr=temp->next;  // this is the next node,that has to be deleted
+                temp->data=temp->next->data;
+                Node *del=temp->next;
                 temp->next=temp->next->next;
-                delete curr;    //us node ko delete kar diya
-                temp=head;  //temp ko dobara head par le aaye, ki jo pehle ki node thi kabhi vo choti hui, jo node abhi bani aage ke pointers sab sorted hain,isliye ham dobara head par aa gaye
+                delete(del);
+                temp=head;
             }
             else
             {
@@ -65,7 +65,6 @@ class Solution
             }
         }
         return head;
-        
     }
     
 };
