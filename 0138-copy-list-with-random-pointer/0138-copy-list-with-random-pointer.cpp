@@ -18,29 +18,29 @@ class Solution {
 public:
     Node* copyRandomList(Node* head) {
         if(head==NULL)
-            return head;
-        Node* newHead=new Node(0);  // A dummy Node
-        Node* returnHead=newHead;   //Head Node which we have to return
-        Node* curr=head;    // for Traversing
-        map<Node*,Node*> mp;
+            return NULL;
+        Node *newHead=new Node(0);  // A dummy node
+        Node *returnHead=newHead;   //Head node,which we have to return
+        Node *curr=head;    //for traversing
+        map<Node*,Node*>mp;
         while(curr!=NULL)
         {
-            Node* temp=new Node(curr->val);
-            mp.insert({curr,temp});
+            Node *temp=new Node(curr->val);
+            mp.insert({curr,temp}); //storing in map {old_node, new_node}
             newHead->next=temp;
             newHead=newHead->next;
             curr=curr->next;
         }
-        curr=head; //after traversing, curr will point to NULL, so again initialising it with head
-        Node* newCurr=returnHead->next;
+        curr=head; //re-initialising curr again to head,because it is pointing to NULL
+        Node *duplicate=returnHead->next;   //jo duplicate node bnayi thi,uske head par jaane ke liye
         while(curr!=NULL)
         {
-            Node* rand=curr->random;
-            Node* newrand=mp[rand];
-            newCurr->random=newrand;
+            Node *rand=curr->random;    //yhaan se orignal par jaayenge
+            Node *new_random=mp[rand];  // map mein store hai, orignal ke saamne naya
+            duplicate->random=new_random;   //duplicate ke trandom ko,map mein se nikalkar random ko point kra diya
             
-            newCurr=newCurr->next;
-            curr=curr->next;    
+            duplicate=duplicate->next;  //for duplicate traversing
+            curr=curr->next;    //for orignal traversing
         }
         return returnHead->next;
     }
