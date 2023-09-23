@@ -6,44 +6,30 @@ using namespace std;
 class Solution{
   public:
     vector<int> duplicates(int arr[], int n) {
-        unordered_map<int,int> mp;
-        vector<int> ans;
+        vector<int>res;
+        unordered_map<int,int>mp;
         for(int i=0;i<n;i++)
         {
             mp[arr[i]]++;
-            if(mp[arr[i]]==2)
+        }
+        int count=0;
+        for(auto i:mp)
+        {
+            if(i.second>1)
             {
-                ans.push_back(arr[i]);
+                res.push_back(i.first);
+            }
+            else
+            {
+                count++;
             }
         }
-        if(ans.size()==0)
+        if(count==n)
         {
-            ans.push_back(-1);
+            return {-1};
         }
-        sort(ans.begin(),ans.end());
-        return ans;
-        
-        
-        // Approach-2
-        // vector<int> ans;
-        // for(int i=0;i<n;i++)
-        // {
-        //     int index=arr[i]%n;
-        //     arr[index]+=n;
-        // }
-        
-        // for(int i=0;i<n;i++)
-        // {
-        //     if(arr[i]/n>=2)
-        //     {
-        //         ans.push_back(i);
-        //     }
-        // }
-        // if(ans.size()==0)
-        // {
-        //     return {-1};
-        // }
-        // return ans;
+        sort(res.begin(),res.end());
+        return res;
     }
 };
 
