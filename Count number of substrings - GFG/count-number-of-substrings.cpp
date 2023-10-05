@@ -26,13 +26,10 @@ class Solution
           }
           while(distinct>k)
           {
-              if(mp[s[i]-'a']==1)
+              mp[s[i]-'a']--;
+              if(mp[s[i]-'a']<=0)
               {
                   distinct--;
-                  mp[s[i]-'a']--;
-              }
-              else{
-                  mp[s[i]-'a']--;
               }
               i++;
           }
