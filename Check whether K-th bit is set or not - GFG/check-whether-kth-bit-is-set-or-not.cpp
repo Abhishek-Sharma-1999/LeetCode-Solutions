@@ -15,11 +15,19 @@ class Solution
     // Function to check if Kth bit is set or not.
     bool checkKthBit(int n, int k)
     {
-        for(int i=1;i<=k;i++)
+        // Approach-1
+            // for(int i=1;i<=k;i++)
+            // {
+            //     n=n/2;
+            // }
+            // return n%2==1;
+        
+        // Approach-2
+        while(k--)
         {
-            n=n/2;
+            n=n>>1; //left-shift in bitwise -> is tarike se hum number ke binary representation (bits) ko traverse karte hain
         }
-        return n%2==1;
+        return (n&1);   //agar us bit ka 1 ka & 1 hai, toh true return hoga, nahin toh false
     }
 };
 
