@@ -23,11 +23,14 @@ class Solution
             // return n%2==1;
         
         // Approach-2
-        while(k--)
-        {
-            n=n>>1; //left-shift in bitwise -> is tarike se hum number ke binary representation (bits) ko traverse karte hain
-        }
-        return (n&1);   //agar us bit ka 1 ka & 1 hai, toh true return hoga, nahin toh false
+        // while(k--)
+        // {
+        //     n=n>>1; //left-shift in bitwise -> is tarike se hum number ke binary representation (bits) ko traverse karte hain
+        // }
+        // return (n&1);   //agar us bit ka 1 ka & 1 hai, toh true return hoga, nahin toh false
+        
+        //One-Liner
+        return ((n>>k)&1)==1;
     }
 };
 
